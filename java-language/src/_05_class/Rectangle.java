@@ -3,38 +3,36 @@ package _05_class;
 public class Rectangle {
 
     private int width;
-    private int heigth;
+    private int height;
+    private static int count = 0;
 
     public Rectangle(int width) {
         this.width = width;
+        count++;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public int getWidth() {
         return width;
     }
 
-    public int getHeigth() {
-        return heigth;
+    public int getHeight() {
+        return height;
     }
 
     public void setWidth(int width) {
         this.width = width;
     }
 
-    public void setHeigth(int heigth) {
-        this.heigth = heigth;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public int getArea() {
-        return width * heigth;
-    }
-
-    @Override
-    public String toString() {
-        return "Rectangle{" +
-                "width=" + width +
-                ", heigth=" + heigth +
-                '}';
+        return width * height;
     }
 
 }

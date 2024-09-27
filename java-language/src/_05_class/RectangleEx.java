@@ -16,17 +16,20 @@ public class RectangleEx {
             int height = sc.nextInt();
             if (width == 0 && height == 0) break;
             Rectangle r1 = new Rectangle(width);
+            r1.setHeight(height);
             rect.add(r1);
-            r1.setHeigth(height);
-            }
-
-
-            for (Rectangle r: rect){
-                System.out.println("가로 길이는: " + r.getWidth());
-                System.out.println("세로 길이는: " + r.getHeigth());
-                System.out.println("넓이는: " + r.getArea());
-                System.out.println("---------------------");
         }
+
+
+        for (Rectangle r: rect){
+            System.out.println("가로 길이는: " + r.getWidth());
+            System.out.println("세로 길이는: " + r.getHeight());
+            System.out.println("넓이는: " + r.getArea());
+            System.out.println("---------------------");
+        }
+
+        System.out.println("Rectangle 인스턴스 개수 : " + Rectangle.getCount());
+
     }
 
 }
