@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class RectangleEx {
     public static void main(String[] args) {
 
+        // Rectangle 클래스를 담는 ArrayList 생성
         ArrayList<Rectangle> rect = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
@@ -20,15 +21,14 @@ public class RectangleEx {
             rect.add(r1);
         }
 
-
         for (Rectangle r: rect){
             System.out.println("가로 길이는: " + r.getWidth());
             System.out.println("세로 길이는: " + r.getHeight());
-            System.out.println("넓이는: " + r.getArea());
+            System.out.println("넓이는: " + r.area());
             System.out.println("---------------------");
         }
 
-        System.out.println("Rectangle 인스턴스 개수 : " + Rectangle.getCount());
+        System.out.println("Rectangle 인스턴스의 개수는: " + Rectangle.getCount());
 
     }
 
