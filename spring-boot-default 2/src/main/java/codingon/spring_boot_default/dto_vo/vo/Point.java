@@ -60,6 +60,7 @@ public final class Point {
     }
     // => 일반적으로는 equals() 메서드로 같다고 판단된 두 객체는 "반드시 같은 hashCode"를 반환해야 함!!!!
 
+    // toString 오버라이드
     @Override
     public String toString() {
         return "Point{" +
