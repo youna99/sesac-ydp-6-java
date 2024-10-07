@@ -18,6 +18,10 @@ public class PracPost {
                            @RequestParam String gender,
                            @RequestParam String birth,
                            @RequestParam String interest, Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("gender", gender);
+        model.addAttribute("birth", birth);
+        model.addAttribute("interest", interest);
         return "_02_restapi/pracPostRes";
     }
 
