@@ -67,5 +67,50 @@
         <button type="submit">Post 전송</button>
     </form>
 </div>
+
+<h1>DTO 이용</h1>
+<div class="forms-container">
+    <form action="/dto/res1" method="GET" class="form-card">
+        <h3>#8. DTO with GET Method</h3>
+        <input type="text" name="name" placeholder="이름" /><br />
+        <input type="number" name="age" placeholder="나이" /><br />
+        <button type="submit">GET 전송</button>
+    </form>
+    <form action="/dto/res2" method="POST" class="form-card">
+        <h3>#9. DTO with POST Method (@RequestBody x)</h3>
+        <input type="text" name="name" placeholder="이름" /><br />
+        <input type="number" name="age" placeholder="나이" /><br />
+        <button type="submit">Post 전송</button>
+    </form>
+    <form action="/dto/res3" method="POST" class="form-card">
+        <h3>#10. DTO with POST Method (@RequestBody o)</h3>
+        <input type="text" name="name" placeholder="이름" /><br />
+        <input type="number" name="age" placeholder="나이" /><br />
+        <button type="submit">Post 전송</button>
+    </form>
+</div>
+
+<h1>VO 이용</h1>
+<div class="forms-container">
+    <form action="/vo/res1" method="GET" class="form-card">
+        <h3>#11. VO with GET Method</h3>
+        <input type="text" name="name" placeholder="이름" /><br />
+        <input type="text" name="age" placeholder="나이" /><br />
+        <button type="submit">GET 전송</button>
+    </form>
+    <form action="/vo/res2" method="POST" class="form-card">
+        <h3>#12. VO with POST Method (@RequestBody x)</h3>
+        <input type="text" name="name" placeholder="이름" /><br />
+        <input type="text" name="age" placeholder="나이" /><br />
+        <button type="submit">Post 전송</button>
+    </form>
+    <form action="/vo/res3" method="POST" class="form-card">
+        <h3>#13. VO with POST Method (@RequestBody o)</h3>
+        <input type="text" name="name" placeholder="이름" /><br />
+        <input type="text" name="age" placeholder="나이" /><br />
+        <button type="submit">Post 전송</button>
+    </form>
+</div>
+
 </body>
 </html>
