@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//@RestController
-//@RequestMapping("/boards")
-//public class BoardController {
-//
-//    @Autowired
-//    private BoardService boardService;
-//
-//    @GetMapping
-//    public List<BoardDTO> listBoards() {
-//        return BoardService.getAllBoardA();
-//    }
-//}
+@RestController
+@RequestMapping("/api/boards")
+public class BoardController {
+
+    @Autowired
+    private BoardService boardService;
+
+    @GetMapping
+    public List<BoardDTO> listBoards() {
+        return boardService.getAllBoardA();
+    }
+}

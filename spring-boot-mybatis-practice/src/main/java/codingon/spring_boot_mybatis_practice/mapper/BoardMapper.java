@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     // xml 기반 매퍼
-    List<Board> findallA();
+    List<Board> findAllA();
 }

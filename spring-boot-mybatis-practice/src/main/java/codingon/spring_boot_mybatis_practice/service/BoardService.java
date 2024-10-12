@@ -17,7 +17,7 @@ public class BoardService {
 
     // '동그라미' 작성자의 정보를 반환
     public List<BoardDTO> getAllBoardA() {
-        List<Board> boards = boardMapper.findallA();
+        List<Board> boards = boardMapper.findAllA();
         List<BoardDTO> boardDTOS = new ArrayList<>();
         for (Board board : boards) {
             BoardDTO boardDTO = convertToDto(board);
