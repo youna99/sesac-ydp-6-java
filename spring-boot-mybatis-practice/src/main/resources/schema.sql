@@ -1,7 +1,7 @@
 create database spring default character set utf8 default collate utf8_general_ci;
  use spring;
  -- users 테이블 생성
- create table boards (boards
+ create table boards (
                        id int auto_increment primary key,
                        title varchar(50) not null,
                        content varchar(100) not null,

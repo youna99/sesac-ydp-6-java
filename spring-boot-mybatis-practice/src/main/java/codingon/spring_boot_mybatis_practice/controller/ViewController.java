@@ -11,4 +11,14 @@ public class ViewController {
 
     @GetMapping("/boards")
     public String listBoards() {return "boardList";}
+
+    @GetMapping("/boards/new")
+    public String newBoardForm() {
+        return "boardForm";
+    }
+
+    @GetMapping("/boards/{id}/edit")
+    public String editBoardForm() {
+        return "boardForm";
+    }
 }
