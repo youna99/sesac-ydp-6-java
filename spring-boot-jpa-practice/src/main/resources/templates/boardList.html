@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/board.css">
+</head>
+<body>
+<h1>Board List</h1>
+<div class="btn-container">
+    <a href="/boards/new" class="btn btn-new">게시물 등록</a>
+    <div class="search-section">
+        <input type="text" id="searchInput" placeholder="제목 또는 작성자로 검색해보세요">
+        <button onclick="searchBoards()" class="btn">검색</button>
+    </div>
+
+    <div class="writer-check-section">
+        <input type="text" id="writerInput" placeholder="작성자로 해당 작성자가 존재하는지 확인해보세요 (전체 작성자 작성 필요)">
+        <button onclick="checkWriter()" class="btn">중복 확인</button>
+    </div>
+    <span id="writerResult"></span>
+
+    <div class="search-section">
+        <input type="text" id="searchInputWriter" placeholder="전체 작성자로 검색하세요">
+        <button onclick="searchWriter()" class="btn">검색</button>
+    </div>
+</div>
+
+
+<table id="boardTable">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Writer</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchBoards();
+    });
+
+    function fetchBoards() {
+        axios.get('/api/boards')
+            .then(function (response) {
+                const boards = response.data;
+                updateBoardTable(boards);
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function searchBoards() {
+        const keyword = document.getElementById('searchInput').value;
+        axios.get(`/api/boards/search?keyword=${keyword}`)
+            .then(function (response) {
+                const boards = response.data;
+                updateBoardTable(boards);
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function checkWriter() {
+        const writer = document.getElementById('writerInput').value;
+        axios.get(`/api/users/exists?writer=${writer}`)
+            .then(function (response) {
+                const exists = response.data;
+                const resultSpan = document.getElementById('writerResult');
+                if (exists) {
+                    resultSpan.textContent = '해당 작성자가 이미 존재해요!';
+                    resultSpan.style.color = 'red';
+                } else {
+                    resultSpan.textContent = '해당 작성자를 사용할 수 있어요!';
+                    resultSpan.style.color = 'green';
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function searchWriter() {
+        const writer = document.getElementById('searchInputWriter').value;
+        axios.get(`/api/boards/byWriter?writer=${writer}`)
+            .then(function (response) {
+                const boards = response.data;
+                updateWriterTable(boards);
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    function updateBoardTable(boards) {
+        const tbody = document.querySelector('#boardTable tbody');
+        tbody.innerHTML = '';
+        boards.forEach(function(board) {
+            const row = `
+                <tr>
+                    <td>${board.id}</td>
+                    <td>${board.title}</td>
+                    <td>${board.content}</td>
+                    <td>${board.writer}</td>
+                    <td class="action-buttons">
+                        <a href="/boards/${board.id}/edit" class="btn">수정</a>
+                        <button onclick="deleteBoard(${board.id})" class="btn btn-danger">삭제</button>
+                    </td>
+                </tr>
+            `;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function deleteBoard(id) {
+        if (confirm('정말로 삭제하시겠습니까?')) {
+            axios.delete('/api/boards/' + id)
+                .then(function (response) {
+                    fetchBoards();
+                })
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+        }
+    }
+</script>
+</body>
+</html>
