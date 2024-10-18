@@ -79,7 +79,7 @@ public class UserController {
         } else {
             // 로그인 검사 실패! (해당 유저가 존재하지 않았으므로)
             ResponseDTO responseDTO = ResponseDTO.builder()
-                    .error("Login failde.")
+                    .error("Login failed.")
                     .build();
 
             return ResponseEntity.badRequest().body(responseDTO);
