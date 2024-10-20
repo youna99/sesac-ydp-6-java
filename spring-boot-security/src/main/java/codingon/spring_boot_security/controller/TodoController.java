@@ -93,4 +93,41 @@ public class TodoController {
         // (4) ResponseDTO 리턴
         return ResponseEntity.ok().body(response);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateTodo(@AuthenticationPrincipal String userId,
+                                        @PathVariable Long id, @RequestBody TodoDTO dto) {
+        try {
+            TodoEntity entity = TodoDTO.toEntity(dto);
+
+            entity.setId(id);
+            entity.setUserId(userId);
+
+            TodoEntity updatedEntity = service.update(entity);
+
+            TodoDTO updateDTO = new TodoDTO(updatedEntity);
+
+            return ResponseEntity.ok().body(updateDTO);
+        } catch (Exception e) {
+            String error = e.getMessage();
+            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
+
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTodo(@AuthenticationPrincipal String userId,
+                                        @PathVariable Long id) {
+        try {
+            TodoDTO deletedTodo = service.delete(id, userId);
+
+            return ResponseEntity.ok().body(deletedTodo);
+        } catch (Exception e) {
+            String error = e.getMessage();
+            ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
+
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 }
